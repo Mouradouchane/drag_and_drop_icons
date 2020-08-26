@@ -15,11 +15,16 @@
     position: relative;
     width: 100px;
     height: 100px;
-    border: 2px solid rgba(221, 221, 221, 0.2);
+    border: 2px solid rgba(221, 221, 221, 0.4);
     border-radius : 6px;
     margin-left: 30px;
     margin-top: 15px;
+    transition: 0.6s;
     display: inline-block;
+}
+
+#main .dropzone:hover{
+    border-color: rgb(107, 252, 163);
 }
 
 #main .dropzone .content{
@@ -39,6 +44,8 @@
     cursor: grab;
 }
 
+
+/* animation when we hover in any dropzone in drag time */
 @keyframes onDragEnter{
     0%{
         opacity: 0.1;

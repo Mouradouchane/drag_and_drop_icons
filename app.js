@@ -1,51 +1,4 @@
 /*
-    /*
-    destination_y = where you want scroll to go
-    speed = scroll speed movement in each time
-    transition = as delay for smoothing move 
-    
-let destination_y = 500 , speed = 10, transition = 10;
-
-function niceScrolling_Increment(){
-
-    let move = setInterval( () => {
-
-        if(destination_y > document.body.clientHeight) clearInterval(move);
-
-        if(document.documentElement.scrollTop < destination_y){
-
-            if(document.documentElement.scrollTop  <= destination_y){
-                window.scrollTo(0 , document.documentElement.scrollTop += speed);
-            }
-            else clearInterval(move);
-            
-        }
-        else clearInterval(move);
-    } , transition);
-
-}
-
-function niceScrolling_Decrement(){
-
-    let move = setInterval( () => {
-
-        if(destination_y < 0) clearInterval(move);
-        
-        if(document.documentElement.scrollTop >= destination_y){
-            
-            if(document.documentElement.scrollTop  >= destination_y){
-                window.scrollTo(0 , document.documentElement.scrollTop -= speed)
-            }
-            else clearInterval(move);
-
-        } 
-        else clearInterval(move);
-    } , transition);
-
-}
-*/
-
-/*
     drag and drop events :
 
     drag 	    ondrag 	
@@ -58,31 +11,50 @@ function niceScrolling_Decrement(){
     drop 	    ondrop
 */
 
-var AllDropZone = document.querySelectorAll(".dropzone") , i = 1;
+// all elements in main div ' <div class="dropzone"></div> '    // i for loop
+var AllDropZone = document.querySelectorAll(".dropzone") ,      i = 1;
+
+// count of imgs i have in imgs folder
 const imgsCount = 6;
 
+// this loop for making all div's dropzone  
 for(zone of AllDropZone){
+
     zone.dropzone = true;
 
+    // new element as icon content
     let Newcontent = document.createElement("div");
+    // access to dragable
     Newcontent.draggable = true;
+    // just id + class for usage :)
     Newcontent.setAttribute("class","content");
     Newcontent.setAttribute("id" , "content" + i); i+=1;
     
+    // if dropzone is greater than imgsCount that mean no image available
+    // only if still there image then should append image as icon 
     if(i < imgsCount){
         Newcontent.style.cssText = `background-image: url("./imgs/icons (${i}).svg");`;
     }
-        
+    
+    // on 'dragstart' event we sending reference of element ' ID '
+    Newcontent.addEventListener("dragstart" , e =>{
+        // sending id by using 'dataTransfer'
+        e.dataTransfer.setData("text/plain" , Newcontent.id);
+    });
+
+    // append directly with icon or without icon   
     zone.append(Newcontent);
+
 } 
 
-var AllContent = document.querySelectorAll(".content");
-
+// giving necessary events for each dropzone
 for(let zone = 0; zone < AllDropZone.length ; zone+=1){
+    // in dragover 'preventDefault' just for avoiding error or exception happen
     AllDropZone[zone].addEventListener("dragover" , e =>{
         e.preventDefault();
     });
 
+    // when element dropped in dropzone area
     AllDropZone[zone].addEventListener("drop" , e => {
         e.preventDefault();
         let oldContent = AllDropZone[zone].firstChild;
@@ -93,10 +65,3 @@ for(let zone = 0; zone < AllDropZone.length ; zone+=1){
         ParentNCH.append(oldContent);
     });
 }
-
-for(let index = 0 ; index < AllContent.length ; index +=1){
-    AllContent[index].addEventListener("dragstart" , e =>{
-        e.dataTransfer.setData("text/plain" , AllContent[index].id);
-    });
-}
-
