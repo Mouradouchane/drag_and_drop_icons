@@ -46,20 +46,20 @@
 
 
 /* animation when we hover in any dropzone in drag time */
-@keyframes onDragEnter{
+@keyframes onDragOver{
     0%{
-        opacity: 0.1;
+        border-color: rgba(255, 46, 255, 0.055);
     }
     30%{
-        opacity: 0.3;
+        border-color: rgba(255, 46, 255, 0.3);
     }
     50%{
-        opacity: 0.5;
+        border-color: rgba(255, 46, 255, 0.5);
     }
     70%{
-        opacity: 0.7;
+        border-color: rgba(255, 46, 255, 0.7);
     }
     100%{
-        opacity: 1;
+        border-color: rgba(255, 46, 255, 1);
     }
 }

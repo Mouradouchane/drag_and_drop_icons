@@ -52,16 +52,36 @@ for(let zone = 0; zone < AllDropZone.length ; zone+=1){
     // in dragover 'preventDefault' just for avoiding error or exception happen
     AllDropZone[zone].addEventListener("dragover" , e =>{
         e.preventDefault();
+        // adding animation 
+        AllDropZone[zone].style.cssText = "animation: onDragOver infinite 1s;";
+    });
+
+    // when drag leave we clear css animation 
+    AllDropZone[zone].addEventListener("dragleave" , e =>{
+        AllDropZone[zone].style.cssText = "animation:'';";
     });
 
     // when element dropped in dropzone area
     AllDropZone[zone].addEventListener("drop" , e => {
         e.preventDefault();
+        
+        // !!! old child & new child just swapping parents :)
+
+        // old child
         let oldContent = AllDropZone[zone].firstChild;
+        // new child
         let newChild = document.getElementById(e.dataTransfer.getData("text/plain"));
+        // parent new child
         let ParentNCH = newChild.parentElement; 
 
+        // append new child to zone
         AllDropZone[zone].append(newChild);
+        // append old child to old zone
         ParentNCH.append(oldContent);
+
+        // in drop clearing animation to
+        AllDropZone[zone].style.cssText = "animation:'';";
     });
+
+
 }
