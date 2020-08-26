@@ -1,0 +1,58 @@
+
+#main{
+    position: fixed;
+    width: calc(100% - 4px);
+    height: 100%;
+    margin : -8px;
+    background-image: url("./imgs/macbg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+#main .dropzone{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border: 2px solid rgba(221, 221, 221, 0.2);
+    border-radius : 6px;
+    margin-left: 30px;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+#main .dropzone .content{
+    position: relative;
+    background-size: cover;
+    width: 90px;
+    height: 90px;
+    top: 5px;
+    left : 5px;
+}
+
+#main .dropzone .content:hover{
+    cursor: pointer;
+}
+
+#main .dropzone .content:active{
+    cursor: grab;
+}
+
+@keyframes onDragEnter{
+    0%{
+        opacity: 0.1;
+    }
+    30%{
+        opacity: 0.3;
+    }
+    50%{
+        opacity: 0.5;
+    }
+    70%{
+        opacity: 0.7;
+    }
+    100%{
+        opacity: 1;
+    }
+}
